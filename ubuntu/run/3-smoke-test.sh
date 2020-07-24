@@ -42,8 +42,8 @@ sleep 10
 
 PORT_NUMBER=$(kubectl get svc -l app=nginx -o jsonpath="{.items[0].spec.ports[0].nodePort}")
 
-curl http://kubenode01:$PORT_NUMBER
-curl http://kubenode02:$PORT_NUMBER
+echo curl http://kubenode01:$PORT_NUMBER
+echo curl http://kubenode02:$PORT_NUMBER
 
 echo "====================================================================="
 echo " Logs"

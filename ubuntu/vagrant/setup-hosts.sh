@@ -15,7 +15,7 @@ cat >> /etc/hosts <<EOF
 192.168.5.22  worker-2
 192.168.5.30  lb
 
-192.168.56.3	kubemaster
-192.168.56.4	kubenode01
-192.168.56.5	kubenode02
+192.168.56.2	kubemaster
+192.168.56.3	kubenode01
+192.168.56.4	kubenode02
 EOF
