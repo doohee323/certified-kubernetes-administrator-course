@@ -4,6 +4,8 @@ set -x
 
 /bin/cat /vagrant/ubuntu/authorized_keys >> /home/vagrant/.ssh/authorized_keys
 
+cat /etc/os-release
+
 echo "====================================================================="
 echo " Install docker"
 echo "====================================================================="

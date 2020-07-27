@@ -10,24 +10,24 @@
    
       ```
       Master Node:
-      kubectl drain node master --ignore-daemonsets
-      apt-get install kubeadm=1.17.0-00
-      kubeadm  upgrade plan v1.17.0
-      kubeadm  upgrade apply v1.17.0
-      apt-get install kubelet=1.17.0-00
+      kubectl drain node01 master --ignore-daemonsets
+      apt-get install kubeadm=1.18.0-00
+      kubeadm  upgrade plan v1.18.0
+      kubeadm  upgrade apply v1.18.0
+      apt-get install kubelet=1.18.0-00
       kubectl uncordon master
       kubectl drain node01 --ignore-daemonsets
       
       
       Node01:
-      apt-get install kubeadm=1.17.0-00
-      kubeadm upgrade node --kubelet-version v1.17.0
-      apt-get install kubeket=1.17.0-00
+      apt-get install kubeadm=1.18.0-00
+      kubeadm upgrade node --kubelet-version v1.18.0
+      apt-get install kubelet=1.18.0-00
       
       
       Back on Master:
       kubectl uncordon node01
-      kubectl get pods -o wide | grep gold (make sure this is scheduled on master node)
+      kubectl get pods -o wide | grep gold #(make sure this is scheduled on master node)
       ```
       </details>
 
@@ -36,7 +36,7 @@
       <details>
    
       ```
-      kubectl -n admin2406 get deployment -o custom-columns=DEPLOYMENT:.metadata.name,CONTAINER_IMAGE:.spec.template.spec.   containers[].image,READY_REPLICAS:.status.readyReplicas,NAMESPACE:.metadata.namespace --sort-by=.metadata.name > /opt/   admin2406_data
+      kubectl -n admin2406 get deployment -o custom-columns=DEPLOYMENT:.metadata.name,CONTAINER_IMAGE:.spec.template.spec.   containers[].image,READY_REPLICAS:.status.readyReplicas,NAMESPACE:.metadata.namespace --sort-by=.metadata.name > /opt/admin2406_data
       ```
       </details>
 
@@ -95,7 +95,12 @@
       <details>
 
       ```
-      etcdctl snapshot save --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key --endpoints=127.0.0.1:2379 /opt/etcd-backup.db
+      export ETCDCTL_API=3
+      etcdctl --endpoints=https://127.0.0.1:2379 \
+        --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+        --cert=/etc/kubernetes/pki/etcd/server.crt \
+        --key=/etc/kubernetes/pki/etcd/server.key \
+        snapshot save /opt/etcd-backup.db
       ```
       </details>
 
