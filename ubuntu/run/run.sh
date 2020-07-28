@@ -42,10 +42,16 @@ ssh -i ../../.vagrant/machines/kubemaster/virtualbox/private_key vagrant@192.168
         /bin/bash /vagrant/ubuntu/run/02.3-creating_single_control_plane_cluster.sh
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo " 3-smoke-test.sh "
+echo " 03-bootstrapping-etcd.sh "
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 ssh -i ../../.vagrant/machines/kubemaster/virtualbox/private_key vagrant@192.168.56.2 \
-        /bin/bash /vagrant/ubuntu/run/3-smoke-test.sh
+        /bin/bash /vagrant/ubuntu/run/03-bootstrapping-etcd.sh
+
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+echo " 04-smoke-test.sh "
+echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+ssh -i ../../.vagrant/machines/kubemaster/virtualbox/private_key vagrant@192.168.56.2 \
+        /bin/bash /vagrant/ubuntu/run/04-smoke-test.sh
 
 
 
